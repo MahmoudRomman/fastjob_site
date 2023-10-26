@@ -1,0 +1,157 @@
+{% extends 'partials/base.html' %}
+
+
+{% load static %}
+
+
+{% block content %}
+<!-- Testimonial Start -->
+<div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container">
+        <h1 class="text-center mb-5">Our Clients Say!!!</h1>
+
+
+        <div class="owl-carousel testimonial-carousel">
+
+
+            <div class="testimonial-item bg-light rounded p-4">
+                <i class="fa fa-quote-left fa-2x text-primary mb-3"></i>
+                <p>{{comment_1.message}}</p>
+                <div class="d-flex align-items-center">
+                    
+                    {% if comment_1.image %}                        
+                    <img class="img-fluid flex-shrink-0 rounded" src="{{comment_1.image.url}}" style="width: 50px; height: 50px;">
+                    {% else %}
+                    <img class="img-fluid flex-shrink-0 rounded" src="{% static 'img/avatar.png' %}" style="width: 50px; height: 50px;">
+                    {% endif %}
+                    
+                    
+                    
+                    <div class="ps-3">
+                        <h5 class="mb-1">{{comment_1.name}}</h5>
+                        <small>{{comment_1.job}}</small>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="testimonial-item bg-light rounded p-4">
+                <i class="fa fa-quote-left fa-2x text-primary mb-3"></i>
+                <p>{{comment_2.message}}</p>
+                <div class="d-flex align-items-center">
+
+                    {% if comment_2.image %}                        
+                    <img class="img-fluid flex-shrink-0 rounded" src="{{comment_2.image.url}}" style="width: 50px; height: 50px;">
+                    {% else %}
+                    <img class="img-fluid flex-shrink-0 rounded" src="{% static 'img/avatar.png' %}" style="width: 50px; height: 50px;">
+                    {% endif %}
+                    
+                    <div class="ps-3">
+                        <h5 class="mb-1">{{comment_2.name}}</h5>
+                        <small>{{comment_2.job}}</small>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="testimonial-item bg-light rounded p-4">
+                <i class="fa fa-quote-left fa-2x text-primary mb-3"></i>
+                <p>{{comment_3.message}}</p>
+                <div class="d-flex align-items-center">
+                    
+                    {% if comment_3.image %}                        
+                    <img class="img-fluid flex-shrink-0 rounded" src="{{comment_3.image.url}}" style="width: 50px; height: 50px;">
+                    {% else %}
+                    <img class="img-fluid flex-shrink-0 rounded" src="{% static 'img/avatar.png' %}" style="width: 50px; height: 50px;">
+                    {% endif %}
+                    
+                    <div class="ps-3">
+                        <h5 class="mb-1">{{comment_3.name}}</h5>
+                        <small>{{comment_3.job}}</small>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="testimonial-item bg-light rounded p-4">
+                <i class="fa fa-quote-left fa-2x text-primary mb-3"></i>
+                <p>{{comment_4.message}}</p>
+                <div class="d-flex align-items-center">
+                    
+                    {% if comment_4.image %}                        
+                    <img class="img-fluid flex-shrink-0 rounded" src="{{comment_4.image.url}}" style="width: 50px; height: 50px;">
+                    {% else %}
+                    <img class="img-fluid flex-shrink-0 rounded" src="{% static 'img/avatar.png' %}" style="width: 50px; height: 50px;">
+                    {% endif %}
+                    
+                    <div class="ps-3">
+                        <h5 class="mb-1">{{comment_4.name}}</h5>
+                        <small>{{comment_4.job}}</small>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+<!-- Leave us a comment -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <h3 class="text-center mb-5 mt-5 wow fadeInUp" data-wow-delay="0.1s">Leave Us A Comment</h3>
+        <hr class="col-12 col-sm-10" style="margin-left: auto; margin-right: auto">
+        <br>
+        <div class="tab-class text-center wow fadeInUp" data-wow-delay="0.3s">
+            
+            <div class="tab-content">
+                <div id="tab-1" class="tab-pane fade show p-0 active">
+                    <form method="POST" action="." enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="row g-3">
+                            <div class="col-12 col-sm-8" style="margin-left: auto; margin-right: auto">
+                                <div class="form-group">
+                                    {{form.name}}
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-sm-8" style="margin-left: auto; margin-right: auto">
+                                <div class="form-group">
+                                    {{form.job}}
+                                </div>
+                            </div>
+
+                            
+                            <div class="col-12 col-sm-8" style="margin-left: auto; margin-right: auto">
+                                <div class="form-group">
+                                    <label>Insert a photo if you want: </label>
+                                    {{form.image}}
+                                </div>
+                            </div>
+
+                            <div class="col-2 col-sm-8" style="margin-left: auto; margin-right: auto">
+                                <div class="form-group">
+                                    {{form.message}} 
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-12">
+                                <input type="submit" value="Submit Comment" class="btn btn-primary">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Comment Ends -->
+
+
+
+</div>
+<!-- Testimonial End -->
+{% endblock content %}
+    

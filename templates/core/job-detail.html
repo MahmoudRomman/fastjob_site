@@ -1,0 +1,102 @@
+{% extends 'partials/base.html' %}
+
+
+
+
+{% block content %}
+
+<!-- Job Detail Start -->
+<div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container">
+        <div class="row gy-5 gx-4">
+            <div class="col-lg-8">
+                <div class="d-flex align-items-center mb-5">
+
+                {% if job.image %}
+                    <img class="flex-shrink-0 img-fluid border rounded" src="{{job.image.url}}" alt="" style="width: 80px; height: 80px;">
+                {% else %}
+                    <img class="flex-shrink-0 img-fluid border rounded" src="{% url 'job_default_img.jpg' %}" alt="" style="width: 80px; height: 80px;">
+                {% endif %}
+                    <div class="text-start ps-4">
+                        <h3 class="mb-3">{{job.title}}</h3>
+                        <span class="text-truncate me-3"><i class="fa fa-map-marker-alt text-primary me-2"></i>{{job.job_location}}</span>
+                        <span class="text-truncate me-3"><i class="far fa-clock text-primary me-2"></i>{{job.job_type}}, {{job.work_type}}</span>
+                        <span class="text-truncate me-0"><i class="far fa-money-bill-alt text-primary me-2"></i>From: ${{job.job_salary}}k</span>
+                    </div>
+                </div>
+
+                <div class="mb-5">
+                    <h4 class="mb-3">Job description</h4>
+                    <p>{{job.job_description}}</p>
+
+                    <h4 class="mb-3">Responsibility</h4>
+                    <p>{{job.responsibility}}</p>
+
+                    <h4 class="mb-3">Qualifications</h4>
+                    <p>{{job.qualifications}}</p>
+
+                </div>
+
+                <div class="">
+                    <h4 class="mb-4">Apply For The Job</h4>
+                    <form method="POST" action="." enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="row g-3">
+                            <div class="col-12 col-sm-6">
+                                {{form.name}}
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                {{form.email}}
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                {{form.linkedin_link}}
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                {{form.address}}
+                            </div>
+
+                            <div class="col-12 col-sm-6">
+                                <label>Resume: </label>
+                                {{form.cv}}
+                            </div>
+
+                            <div class="col-12 col-sm-6">
+                                <label> Cover Letter: </label>
+                                {{form.cl}}
+                            </div>
+
+                            <div class="col-12 col-sm-6">
+                                {{form.phone}}
+                            </div>
+                            
+
+                            <div class="col-12 col-sm-6">
+                                {% comment %} <button class="btn btn-primary w-100" type="submit">Apply Now</button> {% endcomment %}
+                                <input type="submit" value="Apply Now" class="btn btn-primary w-100">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="bg-light rounded p-5 mb-4 wow slideInUp" data-wow-delay="0.1s">
+                    <h4 class="mb-4">Job Summery</h4>
+                    <p><i class="fa fa-angle-right text-primary me-2"></i>Published on: {{job.date|date}}</p>
+                    <p><i class="fa fa-angle-right text-primary me-2"></i>Job Nature: {{job.job_type}}</p>
+                    <p><i class="fa fa-angle-right text-primary me-2"></i>Work Nature: {{job.work_type}}</p>
+                    <p><i class="fa fa-angle-right text-primary me-2"></i>Salary Starts From: ${{job.job_salary}}k</p>
+                    <p><i class="fa fa-angle-right text-primary me-2"></i>Location: {{job.job_location}}</p>
+                </div>
+                <div class="bg-light rounded p-5 wow slideInUp" data-wow-delay="0.1s">
+                    <h4 class="mb-4">Company Detail</h4>
+                    <p class="m-0">{{job.about_company}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Job Detail End -->
+
+{% endblock content %}
+    

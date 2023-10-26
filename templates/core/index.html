@@ -1,0 +1,232 @@
+
+
+{% extends 'partials/base.html' %}
+{% load static %}
+
+{% block content %}
+    
+    
+
+
+<!-- Category Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <h1 class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">Explore By Category</h1>
+        <div class="row g-4">
+
+            
+            {% comment %} {% for cat in categories %}
+                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <a class="cat-item rounded p-4" href="">
+                        <i class="fa fa-3x fa-mail-bulk text-primary mb-4"></i>
+                        <h6 class="mb-3">{{cat.name}}</h6>
+                        <p class="mb-0">13 job needed</p>
+                    </a>
+                </div>  
+            {% endfor %} {% endcomment %}
+
+
+            {% for key, value in jobs_data.items %}
+                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <a class="cat-item rounded p-4" href="">
+                        <i class="fa fa-3x fa-mail-bulk text-primary mb-4"></i>
+                        <h6 class="mb-3">{{key}}</h6>
+                        
+                        {% if value == 0 %}
+                            <p class="mb-0">no positions</p>
+                        {% else %}
+                            <p class="mb-0">{{value}} positions needed</p>
+                        {% endif %}
+                    </a>
+                </div>  
+            {% endfor %}
+                
+
+
+        </div>
+    </div>
+</div>
+<!-- Category End -->
+
+
+<!-- About Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="row g-5 align-items-center">
+            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
+                <div class="row g-0 about-bg rounded overflow-hidden">
+                    <div class="col-6 text-start">
+                        <img class="img-fluid w-100" src="{% static 'img/about-1.jpg' %}">
+                    </div>
+                    <div class="col-6 text-start">
+                        <img class="img-fluid" src="{% static 'img/about-2.jpg' %}" style="width: 85%; margin-top: 15%;">
+                    </div>
+                    <div class="col-6 text-end">
+                        <img class="img-fluid" src="{% static 'img/about-3.jpg' %}" style="width: 85%;">
+                    </div>
+                    <div class="col-6 text-end">
+                        <img class="img-fluid w-100" src="{% static 'img/about-4.jpg' %}">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+                <h1 class="mb-4">We Help You To Get Your Best Job</h1>
+                <p class="mb-4">Scince The Technology Lead The World, We Help You To Get A Job As Fast As Possible..</p>
+                <a class="btn btn-primary py-3 px-5 mt-3" href="{% url 'about' %}">Read More</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- About End -->
+
+
+<!-- Jobs Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <h1 class="text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">Job Listing</h1>
+        <h4 class="text-center mb-5 mt-1 wow fadeInUp" data-wow-delay="0.1s">Most Recent Jobs</h4>
+
+        <div class="tab-class text-center wow fadeInUp" data-wow-delay="0.3s">
+            <div class="tab-content">
+                <div id="tab-1" class="tab-pane fade show p-0 active">
+
+
+                    {% for job in jobs|slice:"0:5" %}
+                    <div class="job-item p-4 mb-4">
+                        <div class="row g-4">
+                            <div class="col-sm-12 col-md-8 d-flex align-items-center">
+
+                                {% if job.image %}
+                                    <img class="flex-shrink-0 img-fluid border rounded" src="{{job.image.url}}" alt="" style="width: 80px; height: 80px;">
+                                {% else %}
+                                    <img class="flex-shrink-0 img-fluid border rounded" src="{% static 'img/job_default_img.jpg' %}" alt="" style="width: 80px; height: 80px;">
+                                {% endif %}
+
+                                <div class="text-start ps-4">
+                                    <h5 class="mb-3">{{job.title}}</h5>
+                                    <span class="text-truncate me-3"><i class="fa fa-map-marker-alt text-primary me-2"></i>{{job.job_location}}</span>
+                                    <span class="text-truncate me-3"><i class="far fa-clock text-primary me-2"></i>{{job.job_type}}, {{job.work_type}}</span>
+                                    <span class="text-truncate me-0"><i class="far fa-money-bill-alt text-primary me-2"></i>From: ${{job.job_salary}}k</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-4 d-flex flex-column align-items-start align-items-md-end justify-content-center">
+                                <div class="d-flex mb-3">
+                                    <a class="btn btn-light btn-square me-3" href=""><i class="far fa-heart text-primary"></i></a>
+                                    <a class="btn btn-primary" href="{% url 'job_detail' job.id %}">Apply Now</a>
+                                </div>
+                                <small class="text-truncate"><i class="far fa-calendar-alt text-primary me-2"></i>Date Line: {{job.date|date}}</small>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+
+
+                    <a class="btn btn-primary py-3 px-5" href="{% url 'job_list' %}">Browse More Jobs</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Jobs End -->
+
+
+
+
+
+{% load static %}
+
+
+<!-- Testimonial Start -->
+<div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container">
+        <h1 class="text-center mb-5">Our Clients Say!!!</h1>
+
+
+        <div class="owl-carousel testimonial-carousel">
+
+
+            <div class="testimonial-item bg-light rounded p-4">
+                <i class="fa fa-quote-left fa-2x text-primary mb-3"></i>
+                <p>{{comment_1.message}}</p>
+                <div class="d-flex align-items-center">
+                    
+                    {% if comment_1.image %}                        
+                    <img class="img-fluid flex-shrink-0 rounded" src="{{comment_1.image.url}}" style="width: 50px; height: 50px;">
+                    {% else %}
+                    <img class="img-fluid flex-shrink-0 rounded" src="{% static 'img/avatar.png' %}" style="width: 50px; height: 50px;">
+                    {% endif %}
+                    
+                    
+                    
+                    <div class="ps-3">
+                        <h5 class="mb-1">{{comment_1.name}}</h5>
+                        <small>{{comment_1.job}}</small>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="testimonial-item bg-light rounded p-4">
+                <i class="fa fa-quote-left fa-2x text-primary mb-3"></i>
+                <p>{{comment_2.message}}</p>
+                <div class="d-flex align-items-center">
+
+                    {% if comment_2.image %}                        
+                    <img class="img-fluid flex-shrink-0 rounded" src="{{comment_2.image.url}}" style="width: 50px; height: 50px;">
+                    {% else %}
+                    <img class="img-fluid flex-shrink-0 rounded" src="{% static 'img/avatar.png' %}" style="width: 50px; height: 50px;">
+                    {% endif %}
+                    
+                    <div class="ps-3">
+                        <h5 class="mb-1">{{comment_2.name}}</h5>
+                        <small>{{comment_2.job}}</small>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="testimonial-item bg-light rounded p-4">
+                <i class="fa fa-quote-left fa-2x text-primary mb-3"></i>
+                <p>{{comment_3.message}}</p>
+                <div class="d-flex align-items-center">
+                    
+                    {% if comment_3.image %}                        
+                    <img class="img-fluid flex-shrink-0 rounded" src="{{comment_3.image.url}}" style="width: 50px; height: 50px;">
+                    {% else %}
+                    <img class="img-fluid flex-shrink-0 rounded" src="{% static 'img/avatar.png' %}" style="width: 50px; height: 50px;">
+                    {% endif %}
+                    
+                    <div class="ps-3">
+                        <h5 class="mb-1">{{comment_3.name}}</h5>
+                        <small>{{comment_3.job}}</small>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="testimonial-item bg-light rounded p-4">
+                <i class="fa fa-quote-left fa-2x text-primary mb-3"></i>
+                <p>{{comment_4.message}}</p>
+                <div class="d-flex align-items-center">
+                    
+                    {% if comment_4.image %}                        
+                    <img class="img-fluid flex-shrink-0 rounded" src="{{comment_4.image.url}}" style="width: 50px; height: 50px;">
+                    {% else %}
+                    <img class="img-fluid flex-shrink-0 rounded" src="{% static 'img/avatar.png' %}" style="width: 50px; height: 50px;">
+                    {% endif %}
+                    
+                    <div class="ps-3">
+                        <h5 class="mb-1">{{comment_4.name}}</h5>
+                        <small>{{comment_4.job}}</small>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<!-- Testimonial End -->
+        
+{% endblock content %}
